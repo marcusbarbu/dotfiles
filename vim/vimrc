@@ -1,0 +1,45 @@
+set nocompatible
+filetype off
+set t_Co=256
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+let g:ycm_show_diagnostics_ui = 0
+let g:ycm_server_python_interpreter="/usr/bin/python"
+let g:ycm_global_ycm_extra_conf="~/.vim/.ycm_extra_conf.py"
+let g:ycm_confirm_extra_conf=0
+
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'scrooloose/nerdtree'
+Plugin 'vim-airline/vim-airline'
+Plugin 'valloric/youcompleteme'
+Plugin 'dart-lang/dart-vim-plugin'
+Bundle 'skielbasa/vim-material-monokai'
+call vundle#end()
+
+let mapleader="'"
+
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
+
+set foldmethod=indent
+set foldlevel=99
+
+set background=dark
+"colorscheme material-monokai
+"colorscheme molokai
+colorscheme antares
+syntax on
+
+set tabstop=4
+set expandtab
+
+set smartindent
+set shiftwidth=4
+set number
+set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
+map <C-l> :NERDTreeToggle<CR>
+set showcmd
+au BufRead,BufNewFile *.r2py set filetype=python
+au BufRead,BufNewFile Dockerfile.* set filetype=dockerfile
